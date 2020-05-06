@@ -4,6 +4,9 @@ dotenv.config();
 const express = require('express');
 const cors = require('cors');
 
+const { mungeLocation } = require('./utils.js');
+const locationData = require('./data/geo.json.js');
+
 const PORT = process.env.PORT || 3000;
 
 const app = express();
@@ -11,7 +14,7 @@ const app = express();
 app.use(cors());
 
 app.get('/', (req, res) =>{
-    console.log('anything');
+    // console.log('anything'); works
     res.json({ 
         'Welcome': 'Let\'s go!',
 
@@ -20,7 +23,7 @@ app.get('/', (req, res) =>{
 
 
 app.get('/location', (req, res) =>{
-    console.log('anything');
+    // console.log('anything'); works 
     res.json({ 
         'formatted_query': 'Seattle, WA, USA',
         'latitude': '47.606210',
@@ -29,7 +32,7 @@ app.get('/location', (req, res) =>{
 });
 
 app.get('/weather', (req, res) =>{
-    console.log('anything');
+    // console.log('anything');
     res.json({ 
         'Does it work': 'yes it does'
     });
