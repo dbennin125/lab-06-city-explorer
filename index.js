@@ -11,7 +11,7 @@ const app = express();
 app.use(cors());
 
 app.get('/', (req, res) =>{
-    res.json({ hello: 'world'});
+    res.json({ hello: 'world' });
 });
 
 app.listen(PORT, () => console.log(`running on port${PORT}`));
