@@ -10,12 +10,28 @@ const app = express();
 
 app.use(cors());
 
-app.get('/location/:id', (req, res) =>{
-    // console.log('anything');
+app.get('/', (req, res) =>{
+    console.log('anything');
+    res.json({ 
+        'Welcome': 'Let\'s go!',
+
+    });
+});
+
+
+app.get('/location', (req, res) =>{
+    console.log('anything');
     res.json({ 
         'formatted_query': 'Seattle, WA, USA',
         'latitude': '47.606210',
         'longitude': '-122.332071'
+    });
+});
+
+app.get('/weather', (req, res) =>{
+    console.log('anything');
+    res.json({ 
+        'Does it work': 'yes it does'
     });
 });
 
