@@ -74,7 +74,7 @@ app.get('/hiking', async(req, res) =>{
     try {
         const data = await request.get(`https://www.hikingproject.com/data/get-trails?lat=${req.query.latitude}&lon=${req.query.longitude}&maxDistance=200&key=${process.env.HIKING_KEY}`);
         // console.log('anything');
-        const hikingLocations = mungeHike(data.body.trails);
+        const hikingLocations = mungeHike(data.trails);
         res.json(hikingLocations);
     } catch (e) {
         res.json({
