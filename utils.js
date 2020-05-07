@@ -41,7 +41,7 @@ function mungeWeather(weatherData) {
 
 function mungeHike(hikeData) {
     try {
-        const transformedHikeData = hikeData.data.trails.map((hike) => {
+        const transformedHikeData = hikeData.data.map((hike) => {
             
             return {
                //.weather.description comes from hard coded data shape
