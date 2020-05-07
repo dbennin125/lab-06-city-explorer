@@ -1,14 +1,15 @@
 const request = require('superagent');
 const dotenv = require('dotenv');
 dotenv.config();
+console.log(dotenv);
 //get the dotenv and config
 const express = require('express');
 const cors = require('cors');
 //get the express with cors
 
 const { mungeLocation, mungeWeather } = require('./utils.js');
-const locationData = require('./data/geo.json');
-const weatherData = require('./data/weather.json');
+// const locationData = require('./data/geo.json');
+// const weatherData = require('./data/weather.json');
 
 //get your functions and data from 
 
@@ -40,8 +41,10 @@ app.get('/', (req, res) =>{
 app.get('/location', async(req, res) =>{
     // console.log('anything'); works 
     try {
-        const properLocation = mungeLocation(locationData);
-        const data = await request.get();
+        const data = await request.get(`https://us1.locationiq.com/v1/search.php?key=${process.env.LOCATIONIQ_KEY}&q=${req.query.search}&format=json`);
+        // console.log('||', data);
+        const properLocation = mungeLocation(data.body);
+        
         res.json(properLocation);
     } catch (e) {
         res.json({
