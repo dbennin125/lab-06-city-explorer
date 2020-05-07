@@ -5,8 +5,9 @@ dotenv.config();
 const express = require('express');
 const cors = require('cors');
 //get the express with cors
-const { mungeLocation } = require('./utils.js');
+const { mungeLocation, mungeWeather } = require('./utils.js');
 const locationData = require('./data/geo.json');
+const weatherData = require('./data/weather.json');
 // const weatherData = require('./data/weather.json.js');
 //get your functions and data from 
 
@@ -26,7 +27,7 @@ app.get('/', (req, res) =>{
 });
 
 
-app.get('/location', (req, res) =>{
+app.get('/location/:id', (req, res) =>{
     // console.log('anything'); works 
     const properLocation = mungeLocation(locationData);
     
@@ -35,9 +36,8 @@ app.get('/location', (req, res) =>{
 
 app.get('/weather', (req, res) =>{
     // console.log('anything');
-    res.json({ 
-        'Does it work': 'yes it does'
-    });
+    const forecast = mungeWeather(weatherData);
+    res.json(forecast);
 });
 
 
