@@ -1,4 +1,4 @@
-const request = require('superagent');
+// const request = require('superagent');
 const dotenv = require('dotenv');
 dotenv.config();
 //get the dotenv and config

@@ -1,16 +1,18 @@
 function mungeLocation(locationData) {
     try {
-        const transformedLocation = locationData.map((local) => {
+        const transformedLocation = locationData[0];
+        // locationData.map((local) => 
+        {
          //taking the location data and returning the first 
             return {
                 
                 //.display_name, .lat, .lon comes from hard coded data shape
-                formatted_query: local.display_name,
-                latitude: local.lat,
-                longitude: local.lon
+                formatted_query: transformedLocation.display_name,
+                latitude: transformedLocation.lat,
+                longitude: transformedLocation.lon
             };
-        });
-        return transformedLocation;
+        }
+        // return transformedLocation;
     
     
             //air handle to catch if fail
