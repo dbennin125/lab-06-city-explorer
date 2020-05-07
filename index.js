@@ -1,14 +1,18 @@
+const request = require('superagent');
 const dotenv = require('dotenv');
 dotenv.config();
-
+//get the dotenv and config
 const express = require('express');
 const cors = require('cors');
-
+//get the express with cors
 const { mungeLocation } = require('./utils.js');
 const locationData = require('./data/geo.json.js');
+// const weatherData = require('./data/weather.json.js');
+//get your functions and data from 
+
 
 const PORT = process.env.PORT || 3000;
-
+//port works
 const app = express();
 
 app.use(cors());
@@ -24,11 +28,9 @@ app.get('/', (req, res) =>{
 
 app.get('/location', (req, res) =>{
     // console.log('anything'); works 
-    res.json({ 
-        'formatted_query': 'Seattle, WA, USA',
-        'latitude': '47.606210',
-        'longitude': '-122.332071'
-    });
+    const properLocation = mungeLocation(locationData);
+    
+    res.json(properLocation);
 });
 
 app.get('/weather', (req, res) =>{

@@ -7,7 +7,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "qunit test/tests.js",
+    "test": "qunit test/tests.js --watch",
     "dev":"nodemon index.js",
     "start": "node index.js"
   },
