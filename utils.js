@@ -37,7 +37,30 @@ function mungeWeather(weatherData) {
         return [{}];
     }
 }
+
+
+function mungeHike(hikeData) {
+    try {
+        const transformedHikeData = hikeData.data.trails.map((hike) => {
+            
+            return {
+               //.weather.description comes from hard coded data shape
+                name: hike.name,
+                length: hike.length,
+                location: hike.location
+            };
+        });
+        //use the slice to do the forcast for the next 8 days
+        return transformedHikeData.slice(0, 4);
+    } catch (e) {
+        return [{}];
+    }
+}
+
+
+
 module.exports = {
     mungeLocation,
-    mungeWeather
+    mungeWeather,  
+    mungeHike
 };

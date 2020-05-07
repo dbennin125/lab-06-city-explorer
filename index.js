@@ -7,7 +7,7 @@ const express = require('express');
 const cors = require('cors');
 //get the express with cors
 
-const { mungeLocation, mungeWeather } = require('./utils.js');
+const { mungeLocation, mungeWeather, mungeHike } = require('./utils.js');
 // const locationData = require('./data/geo.json');
 // const weatherData = require('./data/weather.json');
 
@@ -74,7 +74,7 @@ app.get('/hiking', async(req, res) =>{
     try {
         const data = await request.get(`https://www.hikingproject.com/data/get-trails?lat=${req.query.latitude}&lon=${req.query.longitude}&maxDistance=200&key=${process.env.HIKING_KEY}`);
         // console.log('anything');
-        const hikingLocations = mungeLocation(data.body);
+        const hikingLocations = mungeHike(data.body.trails);
         res.json(hikingLocations);
     } catch (e) {
         res.json({
