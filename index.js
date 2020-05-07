@@ -1,14 +1,15 @@
-// const request = require('superagent');
+const request = require('superagent');
 const dotenv = require('dotenv');
 dotenv.config();
 //get the dotenv and config
 const express = require('express');
 const cors = require('cors');
 //get the express with cors
+
 const { mungeLocation, mungeWeather } = require('./utils.js');
 const locationData = require('./data/geo.json');
 const weatherData = require('./data/weather.json');
-// const weatherData = require('./data/weather.json.js');
+
 //get your functions and data from 
 
 
@@ -19,25 +20,50 @@ const app = express();
 app.use(cors());
 
 app.get('/', (req, res) =>{
-    // console.log('anything'); works
-    res.json({ 
-        'Welcome': 'Let\'s go!',
+    try {
+        res.json({ 
+            'Welcome': 'Let\'s go!',
 
-    });
+        });
+   
+    } catch (e) {
+        res.json({
+            status: 500,
+            responseText: `Sorry, it seems something went wrong`,
+            e,
+        });
+    }
+    
 });
 
 
-app.get('/location', (req, res) =>{
+app.get('/location', async(req, res) =>{
     // console.log('anything'); works 
-    const properLocation = mungeLocation(locationData);
-    
-    res.json(properLocation);
+    try {
+        const properLocation = mungeLocation(locationData);
+        const data = await request.get();
+        res.json(properLocation);
+    } catch (e) {
+        res.json({
+            status: 500,
+            responseText: `Sorry, it seems something went wrong`,
+            e,
+        });
+    }
 });
 
 app.get('/weather', (req, res) =>{
-    // console.log('anything');
-    const forecast = mungeWeather(weatherData);
-    res.json(forecast);
+    try {
+        // console.log('anything');
+        const forecast = mungeWeather(weatherData);
+        res.json(forecast);
+    } catch (e) {
+        res.json({
+            status: 500,
+            responseText: `Sorry, it seems something went wrong`,
+            e,
+        });
+    }
 });
 
 
