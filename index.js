@@ -6,7 +6,7 @@ const express = require('express');
 const cors = require('cors');
 //get the express with cors
 const { mungeLocation } = require('./utils.js');
-const locationData = require('./data/geo.json.js');
+const locationData = require('./data/geo.json');
 // const weatherData = require('./data/weather.json.js');
 //get your functions and data from 
 
