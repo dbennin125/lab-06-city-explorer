@@ -27,7 +27,7 @@ app.get('/', (req, res) =>{
 });
 
 
-app.get('/location/:id', (req, res) =>{
+app.get('/location', (req, res) =>{
     // console.log('anything'); works 
     const properLocation = mungeLocation(locationData);
     
