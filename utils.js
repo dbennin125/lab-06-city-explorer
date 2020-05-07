@@ -41,7 +41,7 @@ function mungeWeather(weatherData) {
 
 function mungeHike(hikeData) {
     try {
-        const transformedHikeData = hikeData.data.map((hike) => {
+        const transformedHikeData = hikeData.trails.map((hike) => {
             
             return {
                //.weather.description comes from hard coded data shape
@@ -51,7 +51,7 @@ function mungeHike(hikeData) {
             };
         });
         //use the slice to do the forcast for the next 8 days
-        return transformedHikeData.slice(0, 4);
+        return transformedHikeData;
     } catch (e) {
         return [{}];
     }

@@ -1,7 +1,7 @@
 const request = require('superagent');
 const dotenv = require('dotenv');
 dotenv.config();
-console.log(dotenv);
+
 //get the dotenv and config
 const express = require('express');
 const cors = require('cors');
@@ -74,7 +74,8 @@ app.get('/hiking', async(req, res) =>{
     try {
         const data = await request.get(`https://www.hikingproject.com/data/get-trails?lat=${req.query.latitude}&lon=${req.query.longitude}&maxDistance=200&key=${process.env.HIKING_KEY}`);
         // console.log('anything');
-        const hikingLocations = mungeHike(data.trails);
+        const hikingLocations = mungeHike(data.body);
+        console.log(hikingLocations);
         res.json(hikingLocations);
     } catch (e) {
         res.json({
