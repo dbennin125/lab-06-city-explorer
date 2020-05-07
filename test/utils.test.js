@@ -1,18 +1,15 @@
 // IMPORT MODULES under test here:
 const { mungeLocation, mungeWeather } = require('../utils.js');
-//importing in the from utils the functions mungeLocation
-//hard coded data
-const data = require('../data/geo.json');
-//data from 
+const location = require('../data/geo.json');
+//import location data
 const weather = require('../data/weather.json');
-//importing in the hard coded data directory
+//import location
+
 const test = QUnit.test;
 
 test('should return data for portland when given portland api response', function(assert) {
     //Arrange
     // Set up your parameters and expectations
-    
-    //this was the first Portland in the array
     const expected = {
         'formatted_query': 'Portland, Multnomah County, Oregon, USA',
         'latitude': '45.5202471',
@@ -20,9 +17,7 @@ test('should return data for portland when given portland api response', functio
     };
     //Act 
     // Call the function you're testing and set the result to a const
-   
-    //using the function to eat the data and return the first portland.
-    const results = mungeLocation(data);
+    const results = mungeLocation(location);
     
     //Assert
     // Make assertions about what is expected valid result
@@ -30,7 +25,7 @@ test('should return data for portland when given portland api response', functio
 });
 
 
-test('make sure the air handle for mungeLocation works', function(assert) {
+test('should return an empty object when passed invalid input', function(assert) {
     //Arrange
     // Set up your parameters and expectations
     const expected = {};
@@ -90,7 +85,7 @@ test('should return weather data for portland when given portland weather api re
 });
 
 
-test('make sure the air handle for mungeWeather works', function(assert) {
+test('should return an empty object when passed invalid input', function(assert) {
     //Arrange
     // Set up your parameters and expectations
     const expected = [{}];
